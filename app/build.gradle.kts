@@ -65,7 +65,7 @@ dependencies {
 //    implementation(libs.androidx.hilt.navigation.compose)
 //    implementation (libs.androidx.hilt.lifecycle.viewmodel)
 
-
+    implementation ("androidx.hilt:hilt-navigation-compose:1.0.0")
     //custom libs
     implementation("androidx.navigation:navigation-compose:2.8.3")
     implementation("com.valentinilk.shimmer:compose-shimmer:1.3.1")

@@ -3,6 +3,7 @@ package com.asshiq.movieplex.repository
 import android.util.Log
 import com.asshiq.movieplex.api.ApiService
 import com.asshiq.movieplex.api.ApiState
+import com.asshiq.movieplex.data.Post
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -12,7 +13,7 @@ import javax.inject.Inject
 
 class PostRepository @Inject constructor (private val apiService: ApiService) {
 
-    suspend fun getPosts(): Flow<ApiState<List<String>>> = flow {
+    suspend fun getPosts(): Flow<ApiState<List<Post>>> = flow {
         Log.d("Repository", "getPosts")
         try {
             emit(ApiState.Loading) // Emit loading state

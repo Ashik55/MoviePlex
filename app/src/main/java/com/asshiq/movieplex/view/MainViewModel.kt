@@ -3,6 +3,7 @@ package com.asshiq.movieplex.view
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.asshiq.movieplex.api.ApiState
+import com.asshiq.movieplex.data.Post
 import com.asshiq.movieplex.repository.PostRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -16,7 +17,7 @@ class MainViewModel @Inject constructor(
 ) : ViewModel() {
 
     // Saving only NewsResponse instead of the Resource wrapper
-    val productsResponse = MutableStateFlow<List<String>?>(null)
+    val postList = MutableStateFlow<List<Post>?>(null)
 
     // Separate variables to handle loading and error states
     val isLoading = MutableStateFlow(true)
@@ -32,7 +33,6 @@ class MainViewModel @Inject constructor(
     private fun getPost() {
         viewModelScope.launch {
             repository.getPosts(
-
             ).collect { resource ->
                 when (resource) {
                     is ApiState.Loading -> {
@@ -41,7 +41,7 @@ class MainViewModel @Inject constructor(
 
                     is ApiState.Success -> {
                         isLoading.value = false // Stop loading
-                        productsResponse.value = resource.data // Set news data
+                        postList.value = resource.data // Set news data
                     }
 
                     is ApiState.Error -> {

@@ -1,5 +1,6 @@
 package com.asshiq.movieplex.api
 
+import com.asshiq.movieplex.data.Post
 import retrofit2.http.GET
 
 interface ApiService {
@@ -9,6 +10,6 @@ interface ApiService {
     }
 
     @GET("posts")
-    suspend fun getPost():List<String>
+    suspend fun getPost():List<Post>
 
 }
